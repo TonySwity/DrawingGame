@@ -1,25 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineDrawer : MonoBehaviour
 {
+    private const int MinNumberOfPointsInLine = 2;
+    
     [SerializeField] private GameObject _linePrefabs;
     [SerializeField] private LayerMask _cantDrawOverLayerMask;
-
-    private int _cantDrawOverLayerIndex;
-
     [SerializeField] private float _linePointsMinDistance;
     [SerializeField] private float _lineWidth;
     [SerializeField] private Gradient _lineColor;
     [SerializeField] private Camera _camera;
+    [SerializeField] private float _lineWithFactor = 3f;
 
+    private int _cantDrawOverLayerIndex;
     private Line _currentLine;
 
     private void Start()
     {
-        _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOver");
+        int layerNumber = Mathf.RoundToInt(Mathf.Log(_cantDrawOverLayerMask.value, 2));
+        _cantDrawOverLayerIndex = layerNumber;
     }
 
     private void Update()
@@ -53,7 +52,7 @@ public class LineDrawer : MonoBehaviour
     private void Draw()
     {
         Vector2 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.CircleCast(mousePosition, _lineWidth / 3f, Vector2.zero, 1f, _cantDrawOverLayerMask);
+        RaycastHit2D hit = Physics2D.CircleCast(mousePosition, _lineWidth / _lineWithFactor, Vector2.zero, 1f, _cantDrawOverLayerMask);
 
         if (hit)
         {
@@ -69,7 +68,7 @@ public class LineDrawer : MonoBehaviour
     {
         if (_currentLine != null)
         {
-            if (_currentLine.PointsCount < 2)
+            if (_currentLine.PointsCount < MinNumberOfPointsInLine)
             {
                 Destroy(_currentLine.gameObject);
             }
