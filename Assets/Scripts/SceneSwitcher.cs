@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class SceneSwitcher : MonoBehaviour
 {
-    public int CurrentLevel = 1;
-    
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _gamePanel;
+    private readonly int _firstScene = 1;
     
-    public static GameManager Instance;
+    public static SceneSwitcher Instance;
 
     private void Awake()
     {
@@ -19,7 +18,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _gamePanel.SetActive(true);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(_firstScene);
     }
 
     public void Retry()

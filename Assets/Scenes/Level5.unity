@@ -1148,6 +1148,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _camera: {fileID: 519420031}
+  _lineWithFactor: 3
 --- !u!1 &738291992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,21 +1809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3063795dcd81411b9fbd2f1c45ca1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnFinish:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1281024546}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: Activate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1106289791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,6 +1963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextLevelPanel: {fileID: 804531886}
+  _player: {fileID: 1094028100}
 --- !u!4 &1281024547
 Transform:
   m_ObjectHideFlags: 0

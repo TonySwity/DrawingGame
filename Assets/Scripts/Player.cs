@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 {
-    public UnityEvent OnFinish;
+    public event Action Finished;
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.GetComponent<Enemy>())
+        if (col.gameObject.TryGetComponent(out Enemy enemy))
         {
-            OnFinish.Invoke();
+            Finished?.Invoke();
         }
     }
 }
