@@ -7,8 +7,6 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private GameObject _soundOffButton;
     [SerializeField] private AudioSource _music;
     
-    private bool _isSoundOn = true;
-    
     public static SoundManager Instance;
     
     private void Awake()
@@ -16,7 +14,7 @@ public class SoundManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(this);
         }
         else
         {
