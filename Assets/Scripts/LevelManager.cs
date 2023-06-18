@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,9 +6,12 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private GameObject _nextLevelPanel;
     [SerializeField] private GameObject _gamePanel;
+    [SerializeField] private TextMeshProUGUI _textNextButtonPanel;
     
     private Player _player;
-    private readonly int _firstScene = 1;
+    private readonly int _secondScene = 2;
+    private int _finishLevel = 5;
+    
     public static LevelManager Instance;
 
     private void Awake()
@@ -35,6 +39,10 @@ public class LevelManager : MonoBehaviour
 
     private void Activate()
     {
+        if (SceneManager.GetActiveScene().buildIndex == _finishLevel)
+        {
+            _textNextButtonPanel.text = "CONGRATULATION YOU BIG BAD WOLF";
+        }
         _nextLevelPanel.SetActive(true);
     }
 
@@ -44,8 +52,10 @@ public class LevelManager : MonoBehaviour
         
         if (nextLevelIndex > SceneManager.sceneCountInBuildSettings - 1)
         {
-            SceneManager.LoadScene(_firstScene);
+            nextLevelIndex = _secondScene;
+            SceneManager.LoadScene(nextLevelIndex);
         }
+        
         SceneManager.LoadScene(nextLevelIndex);
 
         _nextLevelPanel.SetActive(false);
